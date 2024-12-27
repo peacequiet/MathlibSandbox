@@ -31,9 +31,7 @@ theorem AntitoneOfOpToUp : Antitone ToUpper (α := α) := by
 
 theorem YonedaPreorder (p p' : α) : p ≤ p' ↔ Upper p' ⊆ Upper p := by
   constructor
-  · intro hp x hxp'
-    dsimp [Upper] at *
-    exact le_trans hp hxp'
+  · apply AntitoneOfOpToUp
   · intro hp
     dsimp [Upper] at *
     simp at *
