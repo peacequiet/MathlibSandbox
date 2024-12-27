@@ -29,6 +29,7 @@ theorem AntitoneOfOpToUp : Antitone ToUpper (α := α) := by
   intro x hbx
   exact le_trans ab hbx
 
+-- Yoneda Lemma for preorders
 theorem YonedaPreorder (p p' : α) : p ≤ p' ↔ Upper p' ⊆ Upper p := by
   constructor
   · apply AntitoneOfOpToUp
