@@ -5,6 +5,7 @@ section YonedaPreorder
 variable {α : Type*}
 variable [Preorder α]
 
+-- Useful upper set definition
 def Upper (p : α) : Set α := {q : α | p ≤ q }
 
 theorem UpperIsUpperSet (p : α) : IsUpperSet (Upper p) := by
@@ -15,17 +16,15 @@ theorem UpperIsUpperSet (p : α) : IsUpperSet (Upper p) := by
   apply aUp
   apply ab
 
-def OpToUp : α → Set α
+-- Mapping from set to its upper set
+def ToUpper : α → Set α
   | p => Upper p
 
-#synth Preorder (Set α)
-#check Set.le_eq_subset
-#check Set.le_iff_subset
-
-theorem AntitoneOfOpToUp : Antitone OpToUp (α := α) := by
+-- Proving antimonotonicity of ToUpper
+theorem AntitoneOfOpToUp : Antitone ToUpper (α := α) := by
   dsimp [Antitone]
   intro a b ab
-  dsimp [OpToUp, Upper]
+  dsimp [ToUpper, Upper]
   simp
   intro x hbx
   exact le_trans ab hbx
